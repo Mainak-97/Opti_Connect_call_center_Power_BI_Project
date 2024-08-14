@@ -1,0 +1,17 @@
+@@@PW Skills Opticonnect Call centre Power BI project@@@
+-- Handling null values with '0' in power query
+1. Total calls-  count of call id (card)  OR  dax measure-   Total calls = count(Sheet1[Call Id])
+2. Average speed of answer-
+dax masure- Avg speed ans = calculate(average(Sheet1[Speed of Answer]),Sheet1[Answered (Y/N)]="Y")
+3. Abondoned Calls-
+dax measure- Abondoned calls = Calculate(countrows('Sheet1'),'Sheet1'[Answered (Y/N)]="N")
+4. Overall Satisfaction-
+dax measure-  Overall satisfaction = calculate(average(Sheet1[Satisfaction rating]),'Sheet1'[Satisfaction rating] <> 0)
+5. Total answered calls-
+dax measure -   Total answered calls = calculate(countrows('Sheet1'),'Sheet1'[Answered (Y/N)]="Y")
+6. Abondoned rate-
+dax measure-   Abondoned rate = divide([Abondoned calls],[Total calls])
+then format it to %
+7. Satisfaction <= 3 (donot count 0)
+dax measure-  Stsfcn lessequal to 3 = calculate(COUNTROWS('Sheet1'),Sheet1[Satisfaction rating] <=3, 'Sheet1'[Satisfaction rating] <>0)
+8. 
